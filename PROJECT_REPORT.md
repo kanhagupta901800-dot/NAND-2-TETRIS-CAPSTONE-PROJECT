@@ -6,8 +6,8 @@
 
 **Student Name:** Krishna Gupta  
 **Roll Number:** 2501350048  
-**Degree & Specialization:** B.Tech Computer Science & Engineering (FSD)  
-**Semester & Section:** Semester III, Section B  
+**Degree & Branch:** B.Tech Computer Science & Engineering (B.Tech CSE)  
+**Semester:** Semester III  
 **Academic Year:** 2026–2027  
 **Department:** Department of Computer Science & Engineering  
 **Institution:** School of Engineering & Technology, K.R. Mangalam University  

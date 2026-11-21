@@ -1,6 +1,6 @@
 # Nand to Tetris – I (ETCCNT301) — Lab repository
 
-**Krishna Gupta · Roll no. 2501350048 · B.Tech CSE (FSD), Semester III**
+**Krishna Gupta · Roll no. 2501350048 · B.Tech CSE, Semester III**
 
 | Folder | Contents |
 |--------|----------|
