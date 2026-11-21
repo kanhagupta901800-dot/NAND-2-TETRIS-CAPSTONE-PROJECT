@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capstone Project Report - Nand to Tetris I (Krishna Gupta - 2501350048)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+  
+  :root {
+    --primary: #1e3a8a;
+    --primary-light: #3b82f6;
+    --accent: #0284c7;
+    --text: #1f2937;
+    --text-muted: #4b5563;
+    --bg-code: #f3f4f6;
+    --border: #e5e7eb;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.65;
+    color: var(--text);
+    background-color: #f9fafb;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 60px 80px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+  }
+
+  /* Cover Page */
+  .cover {
+    text-align: center;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+  }
+  .cover .university {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+  .cover .school {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 4px;
+  }
+  .cover .course {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+  }
+  .cover h1 {
+    font-size: 2.2rem;
+    color: #111827;
+    line-height: 1.3;
+    margin: 20px 0;
+  }
+  .cover .badge {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    margin-bottom: 30px;
+  }
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 650px;
+    margin: 30px auto 0;
+    text-align: left;
+    background: #f8fafc;
+    padding: 24px 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .meta-item .label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .meta-item .val {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-top: 2px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    color: #0f172a;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 8px;
+    margin-top: 45px;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 1.2rem;
+    color: #1e293b;
+    margin-top: 28px;
+    margin-bottom: 12px;
+  }
+
+  p, li {
+    font-size: 0.98rem;
+    color: #334155;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    text-align: left;
+  }
+  th {
+    background-color: #f1f5f9;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+
+  pre {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    padding: 18px 20px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88em;
+    background-color: var(--bg-code);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #0369a1;
+  }
+  pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+  }
+
+  .callout {
+    background: #eff6ff;
+    border-left: 4px solid var(--primary-light);
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .callout-title {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+
+  @media print {
+    body {
+      background: #ffffff;
+    }
+    .container {
+      box-shadow: none;
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+    }
+    .page-break {
+      page-break-before: always;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Cover Page -->
+  <div class="cover">
+    <div class="university">K.R. Mangalam University</div>
+    <div class="school">School of Engineering and Technology · Department of CSE</div>
+    <div class="course">Nand to Tetris – I (Course Code: ETCCNT301)</div>
+    <span class="badge">CAPSTONE PROJECT REPORT</span>
+    <h1>Design, Synthesis & Verification of the Hack Computer, Two-Pass Assembler & Graphics Program</h1>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="label">Student Name</div>
+        <div class="val">Krishna Gupta</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Roll Number</div>
+        <div class="val">2501350048</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Degree & Branch</div>
+        <div class="val">B.Tech CSE (FSD)</div>
+      </div>
+      <div class="meta-item">
+        <div class="label">Semester & Section</div>
+        <div class="val">Semester III, Section B</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Executive Summary</h2>
+  <p>
+    This capstone project represents the comprehensive engineering culmination of the course <strong>Nand to Tetris – I (ETCCNT301)</strong>. The project builds a general-purpose, stored-program 16-bit computer from first principles:
+  </p>
+  <div class="callout">
+    <div class="callout-title">Project Pillars</div>
+    <ul>
+      <li><strong>Part A (Hardware Synthesis):</strong> Gate-level implementation of ALU, Register, RAM, Program Counter, CPU, and Top-Level Computer Architecture in HDL.</li>
+      <li><strong>Part B (Software Toolchain):</strong> Custom two-pass Hack Assembler in Python supporting symbol resolution, variable allocation, syntax validation, and memory-mapping dumps with instruction metrics (<code>K mod 3 = 0</code>).</li>
+      <li><strong>Part C (Graphics Application):</strong> Interactive assembly program (<code>Box.asm</code>) rendering a 16 × 20 pixel box at row 48, dynamically triggered by keyboard events (<code>K = 48</code>).</li>
+    </ul>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h2>1. Mathematical Derivations Based on Roll Number</h2>
+  <p>
+    The project parameters are derived directly from the student's unique college roll number <code>2501350048</code>:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Formula</th>
+        <th>Calculated Value</th>
+        <th>Design Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>K (Roll Suffix)</strong></td>
+        <td><code>2501350048 mod 100</code></td>
+        <td><strong>48</strong></td>
+        <td>Base parameter for vertical position and dimensions</td>
+      </tr>
+      <tr>
+        <td><strong>Box Starting Row</strong></td>
+        <td>Row <code>K</code></td>
+        <td><strong>Row 48</strong></td>
+        <td>Top raster scanline where drawing begins</td>
+      </tr>
+      <tr>
+        <td><strong>Box Height</strong></td>
+        <td>Fixed specification</td>
+        <td><strong>20 rows</strong></td>
+        <td>Vertical span (rows 48 through 67 inclusive)</td>
+      </tr>
+      <tr>
+        <td><strong>K mod 4</strong></td>
+        <td><code>48 mod 4</code></td>
+        <td><strong>0</strong></td>
+        <td>Width determination factor</td>
+      </tr>
+      <tr>
+        <td><strong>Box Width (Words)</strong></td>
+        <td><code>(K mod 4) + 1 = 0 + 1</code></td>
+        <td><strong>1 word</strong></td>
+        <td>1 word = 16 horizontal pixels</td>
+      </tr>
+      <tr>
+        <td><strong>Box Width (Pixels)</strong></td>
+        <td><code>16 × ((K mod 4) + 1)</code></td>
+        <td><strong>16 pixels</strong></td>
+        <td>Total horizontal pixel width</td>
+      </tr>
+      <tr>
+        <td><strong>Row Stride Offset</strong></td>
+        <td><code>32 × K = 32 × 48</code></td>
+        <td><strong>1536 words</strong></td>
+        <td>Offset added to base screen address SCREEN (16384)</td>
+      </tr>
+      <tr>
+        <td><strong>Base Screen Address</strong></td>
+        <td><code>16384 + 1536</code></td>
+        <td><strong>17920</strong></td>
+        <td>RAM physical memory address of the first word</td>
+      </tr>
+      <tr>
+        <td><strong>K mod 3</strong></td>
+        <td><code>48 mod 3</code></td>
+        <td><strong>0</strong></td>
+        <td>Specifies assembler functional enhancement</td>
+      </tr>
+      <tr>
+        <td><strong>Assembler Feature</strong></td>
+        <td>Condition for <code>K mod 3 = 0</code></td>
+        <td><strong>Metrics & Symbol Dump</strong></td>
+        <td>Assembly metrics, profiling, symbol resolution & memory map</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. Part A: Hardware Architecture Verification</h2>
+  <p>
+    The Hack computer architecture combines the <strong>Hack CPU</strong>, <strong>Memory Subsystem</strong> (Data RAM16K, Screen, Keyboard), and <strong>Instruction ROM32K</strong>.
+  </p>
+  <ul>
+    <li><strong>ALU (<code>ALU.hdl</code>):</strong> Operates on 16-bit operands via 6 control bits, generating arithmetic and logical functions alongside condition flags <code>zr</code> and <code>ng</code>.</li>
+    <li><strong>CPU (<code>CPU.hdl</code>):</strong> Decodes A-instructions and C-instructions, driving Register A, Register D, and the Program Counter.</li>
+    <li><strong>Memory (<code>Memory.hdl</code>):</strong> Decodes addresses <code>0x0000..0x3FFF</code> (RAM16K), <code>0x4000..0x5FFF</code> (Screen), and <code>0x6000</code> (Keyboard).</li>
+    <li><strong>Computer (<code>Computer.hdl</code>):</strong> Synchronously wires CPU, Memory, and ROM32K into an operational computer.</li>
+  </ul>
+
+  <h2>3. Part B: Two-Pass Python Assembler (<code>assembler.py</code>)</h2>
+  <p>
+    The assembler converts symbolic Hack assembly into 16-bit binary machine code using a two-pass architecture:
+  </p>
+  <ol>
+    <li><strong>Pass 0 & 1:</strong> Cleans comments/whitespace and binds code labels <code>(LABEL)</code> to their ROM instruction addresses.</li>
+    <li><strong>Pass 2:</strong> Translates instructions into 16-bit binary codes. Unknown symbols are allocated RAM addresses sequentially starting at <code>RAM[16]</code>.</li>
+  </ol>
+  <h3>Feature Implementation (<code>K mod 3 = 0</code>):</h3>
+  <p>
+    The assembler outputs comprehensive <strong>Assembly Metrics & Code Profiling</strong> (total instructions, A/C breakdown) and the <strong>Symbol Resolution Table and Memory Allocation Map</strong> upon assembly, alongside informative line-number error reporting.
+  </p>
+
+  <pre><code>OK: 47 instructions written to Box.hack
+Assembly Analysis & Metrics (K mod 3 = 0 feature):
+  Total Instructions : 47
+  A-Instructions     : 23
+  C-Instructions     : 24
+Symbol Resolution Table & Memory Mapping:
+  User Labels:
+    (LOOP) -> ROM[0]
+    (SETUP) -> ROM[8]
+    (ROW) -> ROM[18]
+    (WORD) -> ROM[26]
+  User Variables:
+    @color -> RAM[16]
+    @addr -> RAM[17]
+    @rows -> RAM[18]
+    @ptr -> RAM[19]
+    @cols -> RAM[20]</code></pre>
+
+  <h2>4. Part C: Interactive Box Program (<code>Box.asm</code>)</h2>
+  <p>
+    <code>Box.asm</code> polls the keyboard memory map (<code>RAM[24576]</code>). When pressed, it fills a 16 × 20 pixel box starting at <code>RAM[17920]</code> with black (<code>-1</code>); when released, it paints it white (<code>0</code>).
+  </p>
+  <h3>Progressive Development Steps</h3>
+  <ul>
+    <li><strong>Step 1 (<code>Step1_Dash.asm</code>):</strong> Draws a single 16-pixel word at <code>RAM[17920] = -1</code>.</li>
+    <li><strong>Step 2 (<code>Step2_WideDash.asm</code>):</strong> Implements a loop drawing the column words of row 48.</li>
+    <li><strong>Step 3 (<code>Step3_Box.asm</code>):</strong> Nested row and column loops painting the 20 rows of row 48 to 67 without keyboard input.</li>
+    <li><strong>Final (<code>Box.asm</code>):</strong> Full keyboard-responsive event loop.</li>
+  </ul>
+
+  <h2>5. Verification and Test Results</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Test Category</th>
+        <th>Benchmark / Test Script</th>
+        <th>Status</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Hardware Chips</td>
+        <td><code>CPU.tst</code>, <code>Memory.tst</code>, <code>ComputerAdd.tst</code>, <code>ComputerMax.tst</code>, <code>ComputerRect.tst</code></td>
+        <td><strong>PASS</strong></td>
+        <td>100% bitwise match with official comparison files</td>
+      </tr>
+      <tr>
+        <td>Assembler</td>
+        <td><code>Add.asm</code> (6 lines)</td>
+        <td><strong>PASS</strong></td>
+        <td>Identical to official Nand2Tetris Java assembler</td>
+      </tr>
+      <tr>
+        <td>Assembler</td>
+        <td><code>Max.asm</code> (16 lines)</td>
+        <td><strong>PASS</strong></td>
+        <td>Identical to official Nand2Tetris Java assembler</td>
+      </tr>
+      <tr>
+        <td>Assembler</td>
+        <td><code>Rect.asm</code> (25 lines)</td>
+        <td><strong>PASS</strong></td>
+        <td>Identical to official Nand2Tetris Java assembler</td>
+      </tr>
+      <tr>
+        <td>Assembler</td>
+        <td><code>Pong.asm</code> (27,483 lines)</td>
+        <td><strong>PASS</strong></td>
+        <td>Identical to official Nand2Tetris Java assembler</td>
+      </tr>
+      <tr>
+        <td>Assembler</td>
+        <td><code>Box.asm</code> (47 lines)</td>
+        <td><strong>PASS</strong></td>
+        <td>Assembled and verified</td>
+      </tr>
+      <tr>
+        <td>CPU Emulation</td>
+        <td><code>Box.hack</code> interactive execution</td>
+        <td><strong>PASS</strong></td>
+        <td>Box renders at rows 48..67 upon key press; clears on release</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>6. Conclusion</h2>
+  <p>
+    All objectives of the Nand to Tetris Capstone Project have been accomplished with precision. The hardware platform passes all simulation checks, the assembler correctly translates complex assembly benchmarks with custom profiling and error diagnostics, and the graphics program accurately performs real-time screen manipulation tailored to roll number <strong>2501350048</strong>.
+  </p>
+</div>
+
+</body>
+</html>\n

@@ -1,0 +1,10 @@
+# nand2tetris tools (download from nand2tetris.org)
+tools/
+
+# report is submitted on ZOSIMA
+report/
+
+# files made while testing
+*.out
+.DS_Store
+__pycache__/
